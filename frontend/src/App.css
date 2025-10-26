@@ -7,7 +7,8 @@ body {
 }
 
 .clash-bg {
-  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #1e3c72 100%);
+  background: url('C:\Users\honya\Documents\GitHub\Supercell-Hackaton-2025\frontend\public\background.svg') no-repeat center center fixed;
+  background-size: cover;
 }
 
 .clash-border {
@@ -16,4 +17,13 @@ body {
 
 html {
   font-size: 20px;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }

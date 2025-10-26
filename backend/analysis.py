@@ -2,7 +2,7 @@ import json
 import re
 from openai import OpenAI
 
-client = OpenAI(api_key="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")
+client = OpenAI(api_key="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")
 
 def communication(message, role):
     response = client.chat.completions.create(
@@ -54,10 +54,11 @@ def analyze_deck_ai(deck):
         "weaknesses": ["weakness 1", "weakness 2", "weakness 3"],
         "improvements": ["improvement 1", "improvement 2"],
         "doctor_score": 75
+        "doctor_score_explonation": "Make a funny insultion sentence according to how good the doctor score is"
     }}
     
     Make it entertaining but insightful. The doctor_score should be 0-100, based on how well will the deck perform in battles.
-    Return ONLY the JSON, no other text.
+    Return ONLY the JSON, no other text. Do not ever use this "—".
     """
     
     role = "You are DeckDoctor, a sarcastic but knowledgeable Clash Royale expert who gives humorous deck analysis."
@@ -71,7 +72,7 @@ def analyze_deck_ai(deck):
         result = json.loads(json_str)
         
         # Validate the response has required fields
-        required_fields = ["roast", "strengths", "weaknesses", "improvements", "doctor_score"]
+        required_fields = ["roast", "strengths", "weaknesses", "improvements", "doctor_score", "doctor_score_explonation"]
         for field in required_fields:
             if field not in result:
                 raise ValueError(f"Missing field: {field}")

@@ -5,6 +5,7 @@ import pandas as pd
 from models import PlayerData, PlayerInfo, Card
 from clash_api import get_player_data, get_card_images
 from analysis import *
+from voice_service import *
 
 app = FastAPI()
 
@@ -106,18 +107,28 @@ def analyze_deck(deck: dict):
         analysis.setdefault("weaknesses", [])
         analysis.setdefault("improvements", [])
         analysis.setdefault("doctor_score", 0)
+        
+        # Generate voice - ADD THIS
+        try:
+            speech_text = format_analysis_text(analysis)
+            audio_base64 = create_voice(speech_text)
+            analysis["audio"] = audio_base64
+            print("Audio generated successfully")
+        except Exception as e:
+            print(f"Voice generation failed: {e}")
+            analysis["audio"] = None
 
         return analysis
 
     except Exception as e:
         print(f"Error in /analyze-deck: {e}")
-        # Return a fallback response instead of error
         return {
-            "roast": "Your deck is so unique that even the AI is confused!",
-            "strengths": ["Has 8 cards", "Can be played in a match"],
-            "weaknesses": ["Needs better synergy", "Missing key defensive options"],
-            "improvements": ["Try adding a win condition", "Consider spell diversity"],  
-            "doctor_score": 50
+            "roast": "This deck broke the analyzer!",
+            "strengths": ["Unique card combination"],
+            "weaknesses": ["May lack consistency"],
+            "improvements": ["Try adding a win condition"],
+            "doctor_score": 50,
+            "audio": None
         }
 
 
