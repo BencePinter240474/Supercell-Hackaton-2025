@@ -3,7 +3,6 @@ import re
 from openai import OpenAI
 
 
-
 def communication(message, role):
     response = client.chat.completions.create(
         model="gpt-4o-mini",  # Fixed model name (was gpt-4.1-mini)
