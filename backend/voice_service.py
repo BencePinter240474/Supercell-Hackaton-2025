@@ -34,7 +34,7 @@ def create_voice(text):
         audio_base64 = base64.b64encode(response.content).decode('utf-8')
         return audio_base64
     else:
-        raise Exception(f"Voice generation failed: {response.status_code}")
+        raise Exception(f"Voice generation failed: {response.status_code} - {response.text}")
 
 def format_analysis_text(analysis):
     """Format the analysis into readable text for speech"""
@@ -51,6 +51,6 @@ def format_analysis_text(analysis):
     
     Try this - {improvements}.
     
-    Final score: {analysis.get('doctor_score', 0)} out of 100. {analysis.get("doctor_score_explonation")}
+    Final score: {analysis.get('doctor_score', 0)} out of 100. {analysis.get("doctor_score_explonation", "")}
     """
     return text.strip()
