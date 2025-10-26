@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-gray-900 text-white;
+}
+
+.clash-bg {
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #1e3c72 100%);
+}
+
+.clash-border {
+  border-color: #4a90e2;
+}
+
+html {
+  font-size: 20px;
+}
