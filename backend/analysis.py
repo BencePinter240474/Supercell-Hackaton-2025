@@ -2,7 +2,7 @@ import json
 import re
 from openai import OpenAI
 
-client = OpenAI(api_key)
+client = OpenAI()
 
 def communication(message, role):
     response = client.chat.completions.create(
