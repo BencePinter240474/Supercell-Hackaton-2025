@@ -2,7 +2,7 @@ import json
 import re
 from openai import OpenAI
 
-client = OpenAI(api_key="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")
+client = OpenAI(api_key)
 
 def communication(message, role):
     response = client.chat.completions.create(
